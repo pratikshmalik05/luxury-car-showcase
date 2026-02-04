@@ -118,3 +118,17 @@
     white-space: pre;
   }
 }
+
+@layer components {
+  .glow {
+    @apply shadow-lg shadow-purple-600/50;
+  }
+
+  .glow-cyan {
+    @apply shadow-lg shadow-cyan-600/50;
+  }
+
+  .glow-sm {
+    @apply shadow-md shadow-purple-600/30;
+  }
+}
