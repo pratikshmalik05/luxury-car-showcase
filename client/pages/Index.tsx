@@ -114,6 +114,35 @@ export default function Index() {
 
   return (
     <div className="bg-white text-foreground overflow-hidden">
+      {/* Image Modal */}
+      {selectedCar && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedCar(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-4xl"
+          >
+            <img
+              src={selectedCar}
+              alt="Car"
+              className="w-full h-auto rounded-lg"
+            />
+            <button
+              onClick={() => setSelectedCar(null)}
+              className="absolute top-4 right-4 bg-white rounded-full p-2 hover:bg-gray-200 transition"
+            >
+              <X className="w-6 h-6 text-black" />
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
