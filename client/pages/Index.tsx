@@ -44,9 +44,9 @@ export default function Index() {
       color: "from-red-500 to-orange-500",
     },
     {
-      name: "SUV",
-      description: "Spacious and powerful, perfect for any adventure",
-      color: "from-blue-500 to-cyan-500",
+      name: "Luxury",
+      description: "Spacious and luxurious, perfect for refined driving",
+      color: "from-purple-500 to-pink-500",
     },
     {
       name: "Electric",
@@ -79,26 +79,38 @@ export default function Index() {
       category: "Sports",
       price: "$200,000",
       specs: ["0-60 in 2.7s", "650 HP", "German Engineering"],
+      image: carImageUrls["Porsche 911"],
     },
     {
       name: "Ferrari F8 Tributo",
       category: "Sports",
       price: "$280,000",
       specs: ["Twin Turbo V12", "710 HP", "Italian Excellence"],
+      image: carImageUrls["Ferrari F8"],
     },
     {
       name: "Rolls Royce Phantom",
       category: "Luxury",
       price: "$550,000",
       specs: ["12-Cyl Engine", "563 HP", "Ultimate Comfort"],
+      image: carImageUrls["Rolls Royce"],
     },
     {
       name: "Tesla Model Plaid",
       category: "Electric",
       price: "$139,990",
       specs: ["0-60 in 1.99s", "1000 HP", "Future of Mobility"],
+      image: carImageUrls["Tesla Model S"],
     },
   ];
+
+  const nextFeaturedCar = () => {
+    setCarouselIndex((prev) => (prev + 1) % featuredCars.length);
+  };
+
+  const prevFeaturedCar = () => {
+    setCarouselIndex((prev) => (prev - 1 + featuredCars.length) % featuredCars.length);
+  };
 
   return (
     <div className="bg-white text-foreground overflow-hidden">
