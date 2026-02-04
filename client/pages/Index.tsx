@@ -491,13 +491,15 @@ export default function Index() {
       </section>
 
       {/* Why Choose Us */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-display text-4xl lg:text-5xl font-bold text-secondary mb-4">
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-white mb-4">
               Why Choose Us
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               We're committed to delivering unmatched quality and service
             </p>
           </div>
@@ -512,15 +514,15 @@ export default function Index() {
                   transition={{ delay: index * 0.2 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
-                  className="bg-white rounded-2xl p-8 border border-border hover:border-primary hover:shadow-lg transition duration-300"
+                  className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/30 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-purple-600/30 transition duration-300"
                 >
-                  <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6">
-                    <Icon className="w-7 h-7 text-primary" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-purple-600/30 to-cyan-600/30 border border-purple-500/50 rounded-xl flex items-center justify-center mb-6">
+                    <Icon className="w-7 h-7 text-purple-400" />
                   </div>
-                  <h3 className="font-display text-xl font-bold text-secondary mb-3">
+                  <h3 className="font-display text-xl font-bold text-white mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-slate-300 leading-relaxed">
                     {feature.description}
                   </p>
                 </motion.div>
