@@ -2,29 +2,59 @@ import { ArrowRight, Zap, Shield, Sparkles, ChevronDown, X, ChevronLeft, Chevron
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-// Beautiful gradient colors for each car with aura aesthetic
-const carGradients: Record<string, { gradient: string; glow: string; emoji: string }> = {
-  "Porsche 911": { gradient: "from-yellow-400 via-orange-500 to-red-600", glow: "via-orange-500/50", emoji: "🏎️" },
-  "Ferrari F8": { gradient: "from-red-500 via-rose-600 to-red-900", glow: "via-red-600/50", emoji: "🏁" },
-  "Mustang GT": { gradient: "from-amber-400 via-orange-500 to-amber-900", glow: "via-orange-500/50", emoji: "🐴" },
-  "BMW M5": { gradient: "from-blue-400 via-blue-600 to-blue-900", glow: "via-blue-600/50", emoji: "⚡" },
-  "Mercedes-AMG": { gradient: "from-slate-300 via-slate-400 to-slate-900", glow: "via-slate-400/50", emoji: "👑" },
-  "Audi R8": { gradient: "from-cyan-400 via-blue-500 to-blue-900", glow: "via-blue-500/50", emoji: "🎯" },
-  "Rolls Royce": { gradient: "from-purple-300 via-purple-500 to-purple-900", glow: "via-purple-500/50", emoji: "✨" },
-  "Tesla Model S": { gradient: "from-emerald-400 via-green-500 to-green-900", glow: "via-green-500/50", emoji: "⚙️" },
+// Real car photo URLs from reliable sources
+const carPhotoUrls: Record<string, string> = {
+  "Porsche 911": "https://images.pexels.com/photos/3729467/pexels-photo-3729467.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "Ferrari F8": "https://images.pexels.com/photos/3587620/pexels-photo-3587620.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "Mustang GT": "https://images.pexels.com/photos/2031904/pexels-photo-2031904.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "BMW M5": "https://images.pexels.com/photos/3799130/pexels-photo-3799130.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "Mercedes-AMG": "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "Audi R8": "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "Rolls Royce": "https://images.pexels.com/photos/3803517/pexels-photo-3803517.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "Tesla Model S": "https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&w=800",
 };
 
-const CarGradientCard = ({ carName }: { carName: string }) => {
-  const { gradient, glow } = carGradients[carName] || carGradients["Porsche 911"];
+// Fallback gradients in case images don't load
+const carGradients: Record<string, { gradient: string; glow: string }> = {
+  "Porsche 911": { gradient: "from-yellow-400 via-orange-500 to-red-600", glow: "via-orange-500/50" },
+  "Ferrari F8": { gradient: "from-red-500 via-rose-600 to-red-900", glow: "via-red-600/50" },
+  "Mustang GT": { gradient: "from-amber-400 via-orange-500 to-amber-900", glow: "via-orange-500/50" },
+  "BMW M5": { gradient: "from-blue-400 via-blue-600 to-blue-900", glow: "via-blue-600/50" },
+  "Mercedes-AMG": { gradient: "from-slate-300 via-slate-400 to-slate-900", glow: "via-slate-400/50" },
+  "Audi R8": { gradient: "from-cyan-400 via-blue-500 to-blue-900", glow: "via-blue-500/50" },
+  "Rolls Royce": { gradient: "from-purple-300 via-purple-500 to-purple-900", glow: "via-purple-500/50" },
+  "Tesla Model S": { gradient: "from-emerald-400 via-green-500 to-green-900", glow: "via-green-500/50" },
+};
+
+const CarImageCard = ({ carName }: { carName: string }) => {
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+  const imageUrl = carPhotoUrls[carName];
+  const fallback = carGradients[carName] || carGradients["Porsche 911"];
+
   return (
-    <div className={`relative w-full h-full bg-gradient-to-br ${gradient} overflow-hidden`}>
-      <div className={`absolute inset-0 bg-gradient-to-br ${glow} blur-3xl opacity-60 animate-pulse`} />
-      <div className="absolute inset-0 flex items-center justify-center text-8xl drop-shadow-lg">
-        {carGradients[carName]?.emoji || "🏎️"}
-      </div>
+    <div className="relative w-full h-full overflow-hidden bg-slate-800">
+      {/* Fallback gradient while loading */}
+      {!imageLoaded && (
+        <div className={`absolute inset-0 bg-gradient-to-br ${fallback.gradient}`}>
+          <div className={`absolute inset-0 bg-gradient-to-br ${fallback.glow} blur-3xl opacity-60 animate-pulse`} />
+        </div>
+      )}
+
+      {/* Real car image */}
+      <img
+        src={imageUrl}
+        alt={carName}
+        onLoad={() => setImageLoaded(true)}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${
+          imageLoaded ? "opacity-100" : "opacity-0"
+        }`}
+      />
     </div>
   );
 };
+
+// Import React for useState
+import React from "react";
 
 export default function Index() {
   const [selectedCar, setSelectedCar] = useState<string | null>(null);
