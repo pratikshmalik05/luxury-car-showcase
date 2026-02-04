@@ -362,54 +362,97 @@ export default function Index() {
             ))}
           </div>
 
-          {/* Detailed Featured Cars */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {featuredCars.map((car, index) => (
-              <div
-                key={index}
-                className="group bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden border border-border hover:border-primary hover:shadow-xl transition duration-300"
+          {/* Featured Cars Carousel */}
+          <div className="relative">
+            <motion.div
+              key={carouselIndex}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            >
+              {[featuredCars[carouselIndex], featuredCars[(carouselIndex + 1) % featuredCars.length]].map((car, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ y: -5 }}
+                  className="group bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden border border-border hover:border-primary hover:shadow-xl transition duration-300 cursor-pointer"
+                  onClick={() => setSelectedCar(car.image)}
+                >
+                  <div className="aspect-video bg-gradient-to-br from-primary/10 to-blue-500/10 overflow-hidden relative">
+                    <img
+                      src={car.image}
+                      alt={car.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <p className="text-sm font-semibold text-primary uppercase mb-2">
+                          {car.category}
+                        </p>
+                        <h3 className="font-display text-2xl font-bold text-secondary">
+                          {car.name}
+                        </h3>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xl font-bold text-accent">
+                          {car.price}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {car.specs.map((spec, i) => (
+                        <span
+                          key={i}
+                          className="inline-block px-3 py-1 bg-blue-50 text-primary text-xs font-medium rounded-full"
+                        >
+                          {spec}
+                        </span>
+                      ))}
+                    </div>
+                    <button className="mt-6 w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                      View Details
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Carousel Controls */}
+            <div className="flex items-center justify-between mt-8">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={prevFeaturedCar}
+                className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-blue-700 transition"
               >
-                <div className="aspect-video bg-gradient-to-br from-primary/10 to-blue-500/10 flex items-center justify-center text-8xl group-hover:scale-110 transition duration-300">
-                  {index === 0
-                    ? "🏎️"
-                    : index === 1
-                      ? "🏁"
-                      : index === 2
-                        ? "👑"
-                        : "⚡"}
-                </div>
-                <div className="p-8">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <p className="text-sm font-semibold text-primary uppercase mb-2">
-                        {car.category}
-                      </p>
-                      <h3 className="font-display text-2xl font-bold text-secondary">
-                        {car.name}
-                      </h3>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xl font-bold text-accent">
-                        {car.price}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {car.specs.map((spec, i) => (
-                      <span
-                        key={i}
-                        className="inline-block px-3 py-1 bg-blue-50 text-primary text-xs font-medium rounded-full"
-                      >
-                        {spec}
-                      </span>
-                    ))}
-                  </div>
-                  <button className="mt-6 w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
-                    View Details
-                  </button>
-                </div>
+                <ChevronLeft className="w-6 h-6" />
+              </motion.button>
+
+              <div className="flex gap-2">
+                {featuredCars.map((_, index) => (
+                  <motion.button
+                    key={index}
+                    whileHover={{ scale: 1.2 }}
+                    onClick={() => setCarouselIndex(index)}
+                    className={`w-3 h-3 rounded-full transition ${
+                      index === carouselIndex ? "bg-primary w-8" : "bg-muted"
+                    }`}
+                  />
+                ))}
               </div>
-            ))}
+
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={nextFeaturedCar}
+                className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-blue-700 transition"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </motion.button>
+            </div>
           </div>
         </div>
       </section>
