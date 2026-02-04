@@ -2,15 +2,28 @@ import { ArrowRight, Zap, Shield, Sparkles, ChevronDown, X, ChevronLeft, Chevron
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const carImageUrls: Record<string, string> = {
-  "Porsche 911": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
-  "Ferrari F8": "https://images.unsplash.com/photo-1579863537050-37265ba4cab0?auto=format&fit=crop&w=800&q=80",
-  "Mustang GT": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
-  "BMW M5": "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?auto=format&fit=crop&w=800&q=80",
-  "Mercedes-AMG": "https://images.unsplash.com/photo-1626400973514-635e0723ca7e?auto=format&fit=crop&w=800&q=80",
-  "Audi R8": "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=800&q=80",
-  "Rolls Royce": "https://images.unsplash.com/photo-1553882900-f2b08422371e?auto=format&fit=crop&w=800&q=80",
-  "Tesla Model S": "https://images.unsplash.com/photo-1560958089-b8a46dd52291?auto=format&fit=crop&w=800&q=80",
+// Beautiful gradient colors for each car with aura aesthetic
+const carGradients: Record<string, { gradient: string; glow: string; emoji: string }> = {
+  "Porsche 911": { gradient: "from-yellow-400 via-orange-500 to-red-600", glow: "via-orange-500/50", emoji: "🏎️" },
+  "Ferrari F8": { gradient: "from-red-500 via-rose-600 to-red-900", glow: "via-red-600/50", emoji: "🏁" },
+  "Mustang GT": { gradient: "from-amber-400 via-orange-500 to-amber-900", glow: "via-orange-500/50", emoji: "🐴" },
+  "BMW M5": { gradient: "from-blue-400 via-blue-600 to-blue-900", glow: "via-blue-600/50", emoji: "⚡" },
+  "Mercedes-AMG": { gradient: "from-slate-300 via-slate-400 to-slate-900", glow: "via-slate-400/50", emoji: "👑" },
+  "Audi R8": { gradient: "from-cyan-400 via-blue-500 to-blue-900", glow: "via-blue-500/50", emoji: "🎯" },
+  "Rolls Royce": { gradient: "from-purple-300 via-purple-500 to-purple-900", glow: "via-purple-500/50", emoji: "✨" },
+  "Tesla Model S": { gradient: "from-emerald-400 via-green-500 to-green-900", glow: "via-green-500/50", emoji: "⚙️" },
+};
+
+const CarGradientCard = ({ carName }: { carName: string }) => {
+  const { gradient, glow } = carGradients[carName] || carGradients["Porsche 911"];
+  return (
+    <div className={`relative w-full h-full bg-gradient-to-br ${gradient} overflow-hidden`}>
+      <div className={`absolute inset-0 bg-gradient-to-br ${glow} blur-3xl opacity-60 animate-pulse`} />
+      <div className="absolute inset-0 flex items-center justify-center text-8xl drop-shadow-lg">
+        {carGradients[carName]?.emoji || "🏎️"}
+      </div>
+    </div>
+  );
 };
 
 export default function Index() {
