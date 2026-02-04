@@ -2,16 +2,16 @@ import { ArrowRight, Zap, Shield, Sparkles, ChevronDown, X, ChevronLeft, Chevron
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-// Real car photo URLs from reliable sources
+// Real car photo URLs with better reliability and CORS support
 const carPhotoUrls: Record<string, string> = {
-  "Porsche 911": "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  "Ferrari F8": "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  "Mustang GT": "https://images.unsplash.com/photo-1494976388531-d1058494cdd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  "BMW M5": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  "Mercedes-AMG": "https://images.unsplash.com/photo-1566023967268-de4e87a62b7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  "Audi R8": "https://images.unsplash.com/photo-1609708536965-f9e41991f296?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  "Rolls Royce": "https://images.unsplash.com/photo-1618405959076-fbb3426d2b0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  "Tesla Model S": "https://images.unsplash.com/photo-1617654112368-307921291f50?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  "Porsche 911": "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLHBvcnNjaGV8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
+  "Ferrari F8": "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLGZlcnJhcml8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
+  "Mustang GT": "https://images.unsplash.com/photo-1494976388531-d1058494cdd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLG11c3Rhbmd8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
+  "BMW M5": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLGJtd3x8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
+  "Mercedes-AMG": "https://images.unsplash.com/photo-1566023967268-de4e87a62b7e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLG1lcmNlZGVzfHx8fHx8MTY3NDcwMDg5MA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
+  "Audi R8": "https://images.unsplash.com/photo-1609708536965-f9e41991f296?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLGF1ZGl8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
+  "Rolls Royce": "https://images.unsplash.com/photo-1618405959076-fbb3426d2b0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLGx1eHVyeXx8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
+  "Tesla Model S": "https://images.unsplash.com/photo-1617654112368-307921291f50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLGVsZWN0cmljfHx8fHx8MTY3NDcwMDg5MA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
 };
 
 // Fallback gradients in case images don't load
