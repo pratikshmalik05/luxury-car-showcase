@@ -445,7 +445,7 @@ export default function Index() {
                   onClick={() => setSelectedCar(car.baseName)}
                 >
                   <div className="aspect-video overflow-hidden relative">
-                    <CarGradientCard carName={car.baseName} />
+                    <CarImageCard carName={car.baseName} />
                   </div>
                   <div className="p-8">
                     <div className="flex items-start justify-between mb-4">
