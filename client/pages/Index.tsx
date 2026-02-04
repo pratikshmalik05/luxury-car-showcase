@@ -327,13 +327,16 @@ export default function Index() {
       </section>
 
       {/* Featured Cars Showcase */}
-      <section id="cars" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section id="cars" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-display text-4xl lg:text-5xl font-bold text-secondary mb-4">
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-white mb-4">
               Featured Collection
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Handpicked masterpieces from the world's most prestigious
               manufacturers
             </p>
@@ -344,10 +347,10 @@ export default function Index() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               onClick={() => setSelectedCategory(null)}
-              className={`px-6 py-2 rounded-full font-semibold transition ${
+              className={`px-6 py-2 rounded-full font-semibold transition border ${
                 selectedCategory === null
-                  ? "bg-primary text-white"
-                  : "bg-muted text-muted-foreground hover:bg-slate-200"
+                  ? "bg-gradient-to-r from-purple-600 to-cyan-600 text-white border-transparent shadow-lg shadow-purple-600/50"
+                  : "bg-slate-800/50 text-slate-300 border-purple-500/30 hover:border-purple-500/50"
               }`}
             >
               All Cars
@@ -357,10 +360,10 @@ export default function Index() {
                 key={category}
                 whileHover={{ scale: 1.05 }}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full font-semibold transition ${
+                className={`px-6 py-2 rounded-full font-semibold transition border ${
                   selectedCategory === category
-                    ? "bg-primary text-white"
-                    : "bg-muted text-muted-foreground hover:bg-slate-200"
+                    ? "bg-gradient-to-r from-purple-600 to-cyan-600 text-white border-transparent shadow-lg shadow-purple-600/50"
+                    : "bg-slate-800/50 text-slate-300 border-purple-500/30 hover:border-purple-500/50"
                 }`}
               >
                 {category}
@@ -376,21 +379,17 @@ export default function Index() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="group cursor-pointer bg-white rounded-xl border border-border hover:border-primary transition overflow-hidden hover:shadow-lg"
-                onClick={() => setSelectedCar(car.image)}
+                className="group cursor-pointer bg-slate-800/50 rounded-xl border border-purple-500/30 hover:border-cyan-500/50 transition overflow-hidden hover:shadow-lg hover:shadow-purple-600/30"
+                onClick={() => setSelectedCar(car.name)}
               >
-                <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden">
-                  <img
-                    src={car.image}
-                    alt={car.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                  />
+                <div className="aspect-square overflow-hidden">
+                  <CarGradientCard carName={car.name} />
                 </div>
-                <div className="p-4">
-                  <p className="text-xs font-semibold text-primary mb-1 uppercase">
+                <div className="p-4 bg-slate-900/80 backdrop-blur-sm">
+                  <p className="text-xs font-semibold text-purple-400 mb-1 uppercase">
                     {car.category}
                   </p>
-                  <h3 className="font-semibold text-secondary text-sm">
+                  <h3 className="font-semibold text-slate-200 text-sm">
                     {car.name}
                   </h3>
                 </div>
