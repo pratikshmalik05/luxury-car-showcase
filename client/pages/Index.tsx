@@ -204,25 +204,28 @@ export default function Index() {
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-slate-50 -z-10" />
-        <div className="max-w-7xl mx-auto">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 -z-10" />
+        <div className="absolute top-20 right-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-cyan-600/20 rounded-full blur-3xl animate-pulse" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-primary/20 mb-6">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/50 mb-6 backdrop-blur-sm">
+                <Sparkles className="w-4 h-4 text-purple-400" />
+                <span className="text-sm font-medium text-purple-300">
                   Discover Premium Vehicles
                 </span>
               </div>
-              <h1 className="font-display text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight">
+              <h1 className="font-display text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Own the Road. <br />
-                <span className="text-primary">Drive Excellence</span>
+                <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Drive Excellence</span>
               </h1>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
                 Experience the world's most coveted luxury and sports cars. From
                 iconic Ferraris to revolutionary Teslas, we bring automotive
                 excellence to your doorstep.
@@ -232,7 +235,7 @@ export default function Index() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection("cars")}
-                  className="bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2 group"
+                  className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-purple-500 hover:to-cyan-500 transition flex items-center justify-center gap-2 group shadow-lg shadow-purple-600/50"
                 >
                   Explore Collection
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition" />
@@ -241,7 +244,7 @@ export default function Index() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection("cta")}
-                  className="border-2 border-secondary text-secondary px-8 py-4 rounded-lg font-semibold hover:bg-secondary hover:text-white transition"
+                  className="border-2 border-purple-500/50 text-slate-300 px-8 py-4 rounded-lg font-semibold hover:bg-purple-600/20 transition backdrop-blur-sm"
                 >
                   Schedule Demo
                 </motion.button>
@@ -253,22 +256,18 @@ export default function Index() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-3xl blur-3xl" />
-              <motion.div 
-                className="relative rounded-3xl overflow-hidden h-96 cursor-pointer group"
+              <div className="absolute inset-0 bg-gradient-to-br from-red-600/30 to-purple-600/30 rounded-3xl blur-2xl" />
+              <motion.div
+                className="relative rounded-3xl overflow-hidden h-96 cursor-pointer group border border-purple-500/30"
                 whileHover={{ scale: 1.02 }}
-                onClick={() => setSelectedCar(carImageUrls["Ferrari F8"])}
+                onClick={() => setSelectedCar("Ferrari F8")}
               >
-                <img
-                  src={carImageUrls["Ferrari F8"]}
-                  alt="Featured Car"
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
+                <CarGradientCard carName="Ferrari F8" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
                   <div className="text-2xl font-bold mb-2">
                     World's Finest Automobiles
                   </div>
-                  <div className="text-blue-100">Click to view full image</div>
+                  <div className="text-purple-200">Click to view full experience</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -277,7 +276,7 @@ export default function Index() {
 
         {/* Scroll indicator */}
         <div className="flex justify-center mt-16 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-primary" />
+          <ChevronDown className="w-6 h-6 text-purple-400" />
         </div>
       </section>
 
