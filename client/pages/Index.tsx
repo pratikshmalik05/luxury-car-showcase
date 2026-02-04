@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 
 // Real car photo URLs from reliable sources
 const carPhotoUrls: Record<string, string> = {
-  "Porsche 911": "https://images.pexels.com/photos/3729467/pexels-photo-3729467.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "Ferrari F8": "https://images.pexels.com/photos/3587620/pexels-photo-3587620.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "Mustang GT": "https://images.pexels.com/photos/2031904/pexels-photo-2031904.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "BMW M5": "https://images.pexels.com/photos/3799130/pexels-photo-3799130.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "Mercedes-AMG": "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "Audi R8": "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "Rolls Royce": "https://images.pexels.com/photos/3803517/pexels-photo-3803517.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "Tesla Model S": "https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "Porsche 911": "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&q=80",
+  "Ferrari F8": "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=800&q=80",
+  "Mustang GT": "https://images.unsplash.com/photo-1552821206-e26fcd9b4b87?w=800&q=80",
+  "BMW M5": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&q=80",
+  "Mercedes-AMG": "https://images.unsplash.com/photo-1566023967268-de4e87a62b7e?w=800&q=80",
+  "Audi R8": "https://images.unsplash.com/photo-1609708536965-f9e41991f296?w=800&q=80",
+  "Rolls Royce": "https://images.unsplash.com/photo-1618405959076-fbb3426d2b0d?w=800&q=80",
+  "Tesla Model S": "https://images.unsplash.com/photo-1617654112368-307921291f50?w=800&q=80",
 };
 
 // Fallback gradients in case images don't load
