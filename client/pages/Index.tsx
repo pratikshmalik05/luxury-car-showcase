@@ -37,17 +37,17 @@ export default function Index() {
   };
 
   const cars = [
-    { name: "Porsche 911", brand: "Porsche", category: "Sports", image: carImageUrls["Porsche 911"] },
-    { name: "Ferrari F8", brand: "Ferrari", category: "Sports", image: carImageUrls["Ferrari F8"] },
-    { name: "Mustang GT", brand: "Ford", category: "Sports", image: carImageUrls["Mustang GT"] },
-    { name: "BMW M5", brand: "BMW", category: "Sports", image: carImageUrls["BMW M5"] },
-    { name: "Mercedes-AMG", brand: "Mercedes", category: "Luxury", image: carImageUrls["Mercedes-AMG"] },
-    { name: "Audi R8", brand: "Audi", category: "Sports", image: carImageUrls["Audi R8"] },
-    { name: "Rolls Royce", brand: "Rolls Royce", category: "Luxury", image: carImageUrls["Rolls Royce"] },
-    { name: "Tesla Model S", brand: "Tesla", category: "Electric", image: carImageUrls["Tesla Model S"] },
+    { name: "Porsche 911", brand: "Porsche", category: "Sports" },
+    { name: "Ferrari F8", brand: "Ferrari", category: "Sports" },
+    { name: "Mustang GT", brand: "Ford", category: "Sports" },
+    { name: "BMW M5", brand: "BMW", category: "Sports" },
+    { name: "Mercedes-AMG", brand: "Mercedes", category: "Luxury" },
+    { name: "Audi R8", brand: "Audi", category: "Sports" },
+    { name: "Rolls Royce", brand: "Rolls Royce", category: "Luxury" },
+    { name: "Tesla Model S", brand: "Tesla", category: "Electric" },
   ];
 
-  const filteredCars = selectedCategory 
+  const filteredCars = selectedCategory
     ? cars.filter(car => car.category === selectedCategory)
     : cars;
 
