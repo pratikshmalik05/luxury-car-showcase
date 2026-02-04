@@ -30,6 +30,12 @@ export default function Index() {
   const [selectedCar, setSelectedCar] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [isMounted, setIsMounted] = useState(true);
+
+  // Ensure dark mode is applied
+  if (typeof document !== 'undefined' && isMounted) {
+    document.documentElement.classList.add('dark');
+  }
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
