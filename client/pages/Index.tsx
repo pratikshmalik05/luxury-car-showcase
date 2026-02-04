@@ -1,5 +1,5 @@
 import { ArrowRight, Zap, Shield, Sparkles, ChevronDown, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const carImageUrls: Record<string, string> = {
@@ -17,6 +17,7 @@ export default function Index() {
   const [selectedCar, setSelectedCar] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -33,7 +34,7 @@ export default function Index() {
     { name: "Tesla Model S", brand: "Tesla", category: "Electric", image: carImageUrls["Tesla Model S"] },
   ];
 
-  const filteredCars = selectedCategory
+  const filteredCars = selectedCategory 
     ? cars.filter(car => car.category === selectedCategory)
     : cars;
 
@@ -143,6 +144,7 @@ export default function Index() {
           </motion.div>
         </motion.div>
       )}
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -190,7 +192,11 @@ export default function Index() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-slate-50 -z-10" />
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-primary/20 mb-6">
                 <Sparkles className="w-4 h-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
@@ -207,21 +213,25 @@ export default function Index() {
                 excellence to your doorstep.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection("cars")}
                   className="bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2 group"
                 >
                   Explore Collection
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition" />
-                </button>
-                <button
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection("cta")}
                   className="border-2 border-secondary text-secondary px-8 py-4 rounded-lg font-semibold hover:bg-secondary hover:text-white transition"
                 >
                   Schedule Demo
-                </button>
+                </motion.button>
               </div>
-            </div>
+            </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -229,7 +239,11 @@ export default function Index() {
               className="relative"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-3xl blur-3xl" />
-              <div className="relative rounded-3xl overflow-hidden h-96 cursor-pointer group" onClick={() => setSelectedCar(carImageUrls["Ferrari F8"])}>
+              <motion.div 
+                className="relative rounded-3xl overflow-hidden h-96 cursor-pointer group"
+                whileHover={{ scale: 1.02 }}
+                onClick={() => setSelectedCar(carImageUrls["Ferrari F8"])}
+              >
                 <img
                   src={carImageUrls["Ferrari F8"]}
                   alt="Featured Car"
@@ -241,7 +255,7 @@ export default function Index() {
                   </div>
                   <div className="text-blue-100">Click to view full image</div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -265,12 +279,17 @@ export default function Index() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {categories.map((category, index) => (
-              <div
+              <motion.div
                 key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
                 className="group cursor-pointer"
               >
                 <div
-                  className={`bg-gradient-to-br ${category.color} rounded-2xl p-8 text-white h-64 flex flex-col justify-between hover:shadow-2xl transition duration-300 transform hover:scale-105`}
+                  className={`bg-gradient-to-br ${category.color} rounded-2xl p-8 text-white h-64 flex flex-col justify-between hover:shadow-2xl transition duration-300 transform`}
                 >
                   <div>
                     <h3 className="font-display text-3xl font-bold mb-3">
@@ -284,7 +303,7 @@ export default function Index() {
                     Explore <ArrowRight className="w-5 h-5" />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -437,8 +456,8 @@ export default function Index() {
                     key={index}
                     whileHover={{ scale: 1.2 }}
                     onClick={() => setCarouselIndex(index)}
-                    className={`w-3 h-3 rounded-full transition ${
-                      index === carouselIndex ? "bg-primary w-8" : "bg-muted"
+                    className={`h-3 rounded-full transition ${
+                      index === carouselIndex ? "bg-primary w-8" : "bg-muted w-3"
                     }`}
                   />
                 ))}
@@ -472,8 +491,13 @@ export default function Index() {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div
+                <motion.div
                   key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
                   className="bg-white rounded-2xl p-8 border border-border hover:border-primary hover:shadow-lg transition duration-300"
                 >
                   <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6">
@@ -485,7 +509,7 @@ export default function Index() {
                   <p className="text-muted-foreground leading-relaxed">
                     {feature.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -494,7 +518,13 @@ export default function Index() {
 
       {/* CTA Section */}
       <section id="cta" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-secondary to-slate-900 text-white">
-        <div className="max-w-4xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center"
+        >
           <h2 className="font-display text-4xl lg:text-5xl font-bold mb-6">
             Ready to Drive Your Dream Car?
           </h2>
@@ -503,15 +533,23 @@ export default function Index() {
             vehicle. Schedule a personalized consultation with our experts today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-primary text-secondary px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition text-lg flex items-center justify-center gap-2 group">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-primary text-secondary px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition text-lg flex items-center justify-center gap-2 group"
+            >
               Schedule Test Drive
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition" />
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-secondary transition text-lg">
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-secondary transition text-lg"
+            >
               Contact Sales
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Footer */}
