@@ -222,16 +222,27 @@ export default function Index() {
                 </button>
               </div>
             </div>
-            <div className="relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-3xl blur-3xl" />
-              <div className="relative bg-gradient-to-br from-primary to-blue-600 rounded-3xl p-8 text-white text-center">
-                <div className="text-9xl mb-6">🏎️</div>
-                <div className="text-2xl font-bold mb-2">
-                  World's Finest Automobiles
+              <div className="relative rounded-3xl overflow-hidden h-96 cursor-pointer group" onClick={() => setSelectedCar(carImageUrls["Ferrari F8"])}>
+                <img
+                  src={carImageUrls["Ferrari F8"]}
+                  alt="Featured Car"
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
+                  <div className="text-2xl font-bold mb-2">
+                    World's Finest Automobiles
+                  </div>
+                  <div className="text-blue-100">Click to view full image</div>
                 </div>
-                <div className="text-blue-100">Hand-picked luxury collection</div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
