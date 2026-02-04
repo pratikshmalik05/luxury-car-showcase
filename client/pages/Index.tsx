@@ -1,29 +1,70 @@
-import { ArrowRight, Zap, Shield, Sparkles, ChevronDown, X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ArrowRight,
+  Zap,
+  Shield,
+  Sparkles,
+  ChevronDown,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
 // Real car photo URLs with better reliability
 const carPhotoUrls: Record<string, string> = {
-  "Porsche 911": "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLHBvcnNjaGV8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
-  "Ferrari F8": "https://ferrari-cdn.thron.com/delivery/public/thumbnail/ferrari/e9677798-7b8b-42b1-becf-387235c70b2a/bocxuw/std/488x325/e9677798-7b8b-42b1-becf-387235c70b2a?scalemode=auto&format=webp",
-  "Mustang GT": "https://imgd.aeplcdn.com/664x374/cw/ec/23766/Ford-Mustang-Exterior-126883.jpg?wm=0&q=80",
-  "BMW M5": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLGJtd3x8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
-  "Mercedes-AMG": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5dPBcQXIru4JQPNc-ZdmBDGF9hC3VbSunhg&s",
-  "Audi R8": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZEhKnuemB-R7F--znlSb4cBpNkr1dBlC0CQ&s",
-  "Rolls Royce": "https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/1-0-home/page-properties/rrmc-homepage-ghost-share-image.jpg",
-  "Tesla Model S": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMfH5fZRvkdx_xt-jQtarE2QH8u_4UuAAhQ&s",
+  "Porsche 911":
+    "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLHBvcnNjaGV8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
+  "Ferrari F8":
+    "https://ferrari-cdn.thron.com/delivery/public/thumbnail/ferrari/e9677798-7b8b-42b1-becf-387235c70b2a/bocxuw/std/488x325/e9677798-7b8b-42b1-becf-387235c70b2a?scalemode=auto&format=webp",
+  "Mustang GT":
+    "https://imgd.aeplcdn.com/664x374/cw/ec/23766/Ford-Mustang-Exterior-126883.jpg?wm=0&q=80",
+  "BMW M5":
+    "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FyLGJtd3x8fHx8fHwxNjc0NzAwODkw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
+  "Mercedes-AMG":
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5dPBcQXIru4JQPNc-ZdmBDGF9hC3VbSunhg&s",
+  "Audi R8":
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZEhKnuemB-R7F--znlSb4cBpNkr1dBlC0CQ&s",
+  "Rolls Royce":
+    "https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/1-0-home/page-properties/rrmc-homepage-ghost-share-image.jpg",
+  "Tesla Model S":
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMfH5fZRvkdx_xt-jQtarE2QH8u_4UuAAhQ&s",
 };
 
 // Fallback gradients in case images don't load
 const carGradients: Record<string, { gradient: string; glow: string }> = {
-  "Porsche 911": { gradient: "from-yellow-400 via-orange-500 to-red-600", glow: "via-orange-500/50" },
-  "Ferrari F8": { gradient: "from-red-500 via-rose-600 to-red-900", glow: "via-red-600/50" },
-  "Mustang GT": { gradient: "from-amber-400 via-orange-500 to-amber-900", glow: "via-orange-500/50" },
-  "BMW M5": { gradient: "from-blue-400 via-blue-600 to-blue-900", glow: "via-blue-600/50" },
-  "Mercedes-AMG": { gradient: "from-slate-300 via-slate-400 to-slate-900", glow: "via-slate-400/50" },
-  "Audi R8": { gradient: "from-cyan-400 via-blue-500 to-blue-900", glow: "via-blue-500/50" },
-  "Rolls Royce": { gradient: "from-purple-300 via-purple-500 to-purple-900", glow: "via-purple-500/50" },
-  "Tesla Model S": { gradient: "from-emerald-400 via-green-500 to-green-900", glow: "via-green-500/50" },
+  "Porsche 911": {
+    gradient: "from-yellow-400 via-orange-500 to-red-600",
+    glow: "via-orange-500/50",
+  },
+  "Ferrari F8": {
+    gradient: "from-red-500 via-rose-600 to-red-900",
+    glow: "via-red-600/50",
+  },
+  "Mustang GT": {
+    gradient: "from-amber-400 via-orange-500 to-amber-900",
+    glow: "via-orange-500/50",
+  },
+  "BMW M5": {
+    gradient: "from-blue-400 via-blue-600 to-blue-900",
+    glow: "via-blue-600/50",
+  },
+  "Mercedes-AMG": {
+    gradient: "from-slate-300 via-slate-400 to-slate-900",
+    glow: "via-slate-400/50",
+  },
+  "Audi R8": {
+    gradient: "from-cyan-400 via-blue-500 to-blue-900",
+    glow: "via-blue-500/50",
+  },
+  "Rolls Royce": {
+    gradient: "from-purple-300 via-purple-500 to-purple-900",
+    glow: "via-purple-500/50",
+  },
+  "Tesla Model S": {
+    gradient: "from-emerald-400 via-green-500 to-green-900",
+    glow: "via-green-500/50",
+  },
 };
 
 const CarImageCard = ({ carName }: { carName: string }) => {
@@ -35,8 +76,12 @@ const CarImageCard = ({ carName }: { carName: string }) => {
     <div className="relative w-full h-full overflow-hidden bg-slate-800">
       {/* Fallback gradient while loading */}
       {!imageLoaded && (
-        <div className={`absolute inset-0 bg-gradient-to-br ${fallback.gradient}`}>
-          <div className={`absolute inset-0 bg-gradient-to-br ${fallback.glow} blur-3xl opacity-60 animate-pulse`} />
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${fallback.gradient}`}
+        >
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${fallback.glow} blur-3xl opacity-60 animate-pulse`}
+          />
         </div>
       )}
 
@@ -63,8 +108,8 @@ export default function Index() {
   const [isMounted, setIsMounted] = useState(true);
 
   // Ensure dark mode is applied
-  if (typeof document !== 'undefined' && isMounted) {
-    document.documentElement.classList.add('dark');
+  if (typeof document !== "undefined" && isMounted) {
+    document.documentElement.classList.add("dark");
   }
 
   const scrollToSection = (id: string) => {
@@ -84,13 +129,14 @@ export default function Index() {
   ];
 
   const filteredCars = selectedCategory
-    ? cars.filter(car => car.category === selectedCategory)
+    ? cars.filter((car) => car.category === selectedCategory)
     : cars;
 
   const categories = [
     {
       name: "Sports",
-      description: "High-performance vehicles with exceptional acceleration and handling",
+      description:
+        "High-performance vehicles with exceptional acceleration and handling",
       color: "from-red-500 to-orange-500",
     },
     {
@@ -109,7 +155,8 @@ export default function Index() {
     {
       icon: Shield,
       title: "Premium Quality",
-      description: "Every vehicle undergoes rigorous quality checks and certification",
+      description:
+        "Every vehicle undergoes rigorous quality checks and certification",
     },
     {
       icon: Zap,
@@ -159,7 +206,9 @@ export default function Index() {
   };
 
   const prevFeaturedCar = () => {
-    setCarouselIndex((prev) => (prev - 1 + featuredCars.length) % featuredCars.length);
+    setCarouselIndex(
+      (prev) => (prev - 1 + featuredCars.length) % featuredCars.length,
+    );
   };
 
   return (
@@ -253,7 +302,9 @@ export default function Index() {
               </div>
               <h1 className="font-display text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Own the Road. <br />
-                <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Drive Excellence</span>
+                <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                  Drive Excellence
+                </span>
               </h1>
               <p className="text-lg text-slate-300 mb-8 leading-relaxed">
                 Experience the world's most coveted luxury and sports cars. From
@@ -297,7 +348,9 @@ export default function Index() {
                   <div className="text-2xl font-bold mb-2">
                     World's Finest Automobiles
                   </div>
-                  <div className="text-purple-200">Click to view full experience</div>
+                  <div className="text-purple-200">
+                    Click to view full experience
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
@@ -311,7 +364,10 @@ export default function Index() {
       </section>
 
       {/* Car Categories */}
-      <section id="categories" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
+      <section
+        id="categories"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden"
+      >
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl" />
 
@@ -357,7 +413,10 @@ export default function Index() {
       </section>
 
       {/* Featured Cars Showcase */}
-      <section id="cars" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 relative overflow-hidden">
+      <section
+        id="cars"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 relative overflow-hidden"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl" />
 
@@ -437,7 +496,10 @@ export default function Index() {
               transition={{ duration: 0.5 }}
               className="grid grid-cols-1 lg:grid-cols-2 gap-8"
             >
-              {[featuredCars[carouselIndex], featuredCars[(carouselIndex + 1) % featuredCars.length]].map((car, index) => (
+              {[
+                featuredCars[carouselIndex],
+                featuredCars[(carouselIndex + 1) % featuredCars.length],
+              ].map((car, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
@@ -521,7 +583,10 @@ export default function Index() {
       </section>
 
       {/* Why Choose Us */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden">
+      <section
+        id="features"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden"
+      >
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -563,7 +628,10 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section id="cta" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white relative overflow-hidden">
+      <section
+        id="cta"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white relative overflow-hidden"
+      >
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-cyan-600/10" />
         <div className="absolute top-0 left-1/3 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
 
@@ -579,7 +647,8 @@ export default function Index() {
           </h2>
           <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
             Join thousands of satisfied customers who've found their perfect
-            vehicle. Schedule a personalized consultation with our experts today.
+            vehicle. Schedule a personalized consultation with our experts
+            today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
@@ -609,13 +678,19 @@ export default function Index() {
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button className="hover:text-purple-400 transition">About</button>
+                  <button className="hover:text-purple-400 transition">
+                    About
+                  </button>
                 </li>
                 <li>
-                  <button className="hover:text-purple-400 transition">Blog</button>
+                  <button className="hover:text-purple-400 transition">
+                    Blog
+                  </button>
                 </li>
                 <li>
-                  <button className="hover:text-purple-400 transition">Careers</button>
+                  <button className="hover:text-purple-400 transition">
+                    Careers
+                  </button>
                 </li>
               </ul>
             </div>
@@ -648,7 +723,9 @@ export default function Index() {
                   </button>
                 </li>
                 <li>
-                  <button className="hover:text-purple-400 transition">Terms</button>
+                  <button className="hover:text-purple-400 transition">
+                    Terms
+                  </button>
                 </li>
               </ul>
             </div>
@@ -656,7 +733,9 @@ export default function Index() {
               <h4 className="font-semibold text-white mb-4">Follow Us</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button className="hover:text-purple-400 transition">Twitter</button>
+                  <button className="hover:text-purple-400 transition">
+                    Twitter
+                  </button>
                 </li>
                 <li>
                   <button className="hover:text-purple-400 transition">
@@ -676,7 +755,9 @@ export default function Index() {
               <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                 🏎️
               </div>
-              <span className="font-semibold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">LuxeMotor</span>
+              <span className="font-semibold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                LuxeMotor
+              </span>
             </div>
             <p className="text-sm text-slate-500">
               © 2024 LuxeMotor. All rights reserved.
