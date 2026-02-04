@@ -303,15 +303,52 @@ export default function Index() {
             </p>
           </div>
 
+          {/* Category Filter */}
+          <div className="flex flex-wrap gap-3 justify-center mb-12">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              onClick={() => setSelectedCategory(null)}
+              className={`px-6 py-2 rounded-full font-semibold transition ${
+                selectedCategory === null
+                  ? "bg-primary text-white"
+                  : "bg-muted text-muted-foreground hover:bg-slate-200"
+              }`}
+            >
+              All Cars
+            </motion.button>
+            {["Sports", "Luxury", "Electric"].map((category) => (
+              <motion.button
+                key={category}
+                whileHover={{ scale: 1.05 }}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-6 py-2 rounded-full font-semibold transition ${
+                  selectedCategory === category
+                    ? "bg-primary text-white"
+                    : "bg-muted text-muted-foreground hover:bg-slate-200"
+                }`}
+              >
+                {category}
+              </motion.button>
+            ))}
+          </div>
+
           {/* Quick Browse Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-16">
-            {cars.map((car, index) => (
-              <div
+            {filteredCars.map((car, index) => (
+              <motion.div
                 key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
                 className="group cursor-pointer bg-white rounded-xl border border-border hover:border-primary transition overflow-hidden hover:shadow-lg"
+                onClick={() => setSelectedCar(car.image)}
               >
-                <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-6xl group-hover:scale-110 transition duration-300">
-                  {car.image}
+                <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden">
+                  <img
+                    src={car.image}
+                    alt={car.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                  />
                 </div>
                 <div className="p-4">
                   <p className="text-xs font-semibold text-primary mb-1 uppercase">
@@ -321,7 +358,7 @@ export default function Index() {
                     {car.name}
                   </h3>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
