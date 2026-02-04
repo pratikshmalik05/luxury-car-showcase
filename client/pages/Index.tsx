@@ -533,18 +533,21 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section id="cta" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-secondary to-slate-900 text-white">
+      <section id="cta" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-cyan-600/10" />
+        <div className="absolute top-0 left-1/3 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
+
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center relative z-10"
         >
           <h2 className="font-display text-4xl lg:text-5xl font-bold mb-6">
             Ready to Drive Your Dream Car?
           </h2>
-          <p className="text-lg text-slate-200 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
             Join thousands of satisfied customers who've found their perfect
             vehicle. Schedule a personalized consultation with our experts today.
           </p>
@@ -552,7 +555,7 @@ export default function Index() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-primary text-secondary px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition text-lg flex items-center justify-center gap-2 group"
+              className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-purple-500 hover:to-cyan-500 transition text-lg flex items-center justify-center gap-2 group shadow-lg shadow-purple-600/50"
             >
               Schedule Test Drive
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition" />
@@ -560,7 +563,7 @@ export default function Index() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-secondary transition text-lg"
+              className="border-2 border-purple-500/50 text-slate-300 px-8 py-4 rounded-lg font-semibold hover:border-cyan-500/50 hover:bg-purple-600/20 transition text-lg backdrop-blur-sm"
             >
               Contact Sales
             </motion.button>
@@ -569,20 +572,20 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 py-12 px-4 sm:px-6 lg:px-8">
+      <footer className="bg-slate-950 text-slate-400 py-12 px-4 sm:px-6 lg:px-8 border-t border-purple-500/20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button className="hover:text-white transition">About</button>
+                  <button className="hover:text-purple-400 transition">About</button>
                 </li>
                 <li>
-                  <button className="hover:text-white transition">Blog</button>
+                  <button className="hover:text-purple-400 transition">Blog</button>
                 </li>
                 <li>
-                  <button className="hover:text-white transition">Careers</button>
+                  <button className="hover:text-purple-400 transition">Careers</button>
                 </li>
               </ul>
             </div>
@@ -590,17 +593,17 @@ export default function Index() {
               <h4 className="font-semibold text-white mb-4">Support</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button className="hover:text-white transition">
+                  <button className="hover:text-purple-400 transition">
                     Contact
                   </button>
                 </li>
                 <li>
-                  <button className="hover:text-white transition">
+                  <button className="hover:text-purple-400 transition">
                     FAQ
                   </button>
                 </li>
                 <li>
-                  <button className="hover:text-white transition">
+                  <button className="hover:text-purple-400 transition">
                     Service
                   </button>
                 </li>
@@ -610,12 +613,12 @@ export default function Index() {
               <h4 className="font-semibold text-white mb-4">Legal</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button className="hover:text-white transition">
+                  <button className="hover:text-purple-400 transition">
                     Privacy
                   </button>
                 </li>
                 <li>
-                  <button className="hover:text-white transition">Terms</button>
+                  <button className="hover:text-purple-400 transition">Terms</button>
                 </li>
               </ul>
             </div>
@@ -623,29 +626,29 @@ export default function Index() {
               <h4 className="font-semibold text-white mb-4">Follow Us</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button className="hover:text-white transition">Twitter</button>
+                  <button className="hover:text-purple-400 transition">Twitter</button>
                 </li>
                 <li>
-                  <button className="hover:text-white transition">
+                  <button className="hover:text-purple-400 transition">
                     Instagram
                   </button>
                 </li>
                 <li>
-                  <button className="hover:text-white transition">
+                  <button className="hover:text-purple-400 transition">
                     LinkedIn
                   </button>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="border-t border-purple-500/20 pt-8 flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-lg">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                 🏎️
               </div>
-              <span className="font-semibold text-white">LuxeMotor</span>
+              <span className="font-semibold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">LuxeMotor</span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-500">
               © 2024 LuxeMotor. All rights reserved.
             </p>
           </div>
