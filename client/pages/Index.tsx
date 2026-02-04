@@ -179,7 +179,7 @@ export default function Index() {
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden border-2 border-purple-500/50 glow"
           >
-            <CarGradientCard carName={selectedCar} />
+            <CarImageCard carName={selectedCar} />
             <button
               onClick={() => setSelectedCar(null)}
               className="absolute top-4 right-4 bg-slate-800/80 hover:bg-slate-700 rounded-full p-3 transition border border-purple-500/30"
