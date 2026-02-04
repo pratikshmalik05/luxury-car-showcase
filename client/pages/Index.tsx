@@ -292,7 +292,7 @@ export default function Index() {
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setSelectedCar("Ferrari F8")}
               >
-                <CarGradientCard carName="Ferrari F8" />
+                <CarImageCard carName="Ferrari F8" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
                   <div className="text-2xl font-bold mb-2">
                     World's Finest Automobiles
