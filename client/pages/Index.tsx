@@ -411,28 +411,24 @@ export default function Index() {
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
-                  className="group bg-gradient-to-br from-slate-50 to-white rounded-2xl overflow-hidden border border-border hover:border-primary hover:shadow-xl transition duration-300 cursor-pointer"
-                  onClick={() => setSelectedCar(car.image)}
+                  className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-purple-500/30 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-purple-600/30 transition duration-300 cursor-pointer"
+                  onClick={() => setSelectedCar(car.baseName)}
                 >
-                  <div className="aspect-video bg-gradient-to-br from-primary/10 to-blue-500/10 overflow-hidden relative">
-                    <img
-                      src={car.image}
-                      alt={car.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                    />
+                  <div className="aspect-video overflow-hidden relative">
+                    <CarGradientCard carName={car.baseName} />
                   </div>
                   <div className="p-8">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <p className="text-sm font-semibold text-primary uppercase mb-2">
+                        <p className="text-sm font-semibold text-purple-400 uppercase mb-2">
                           {car.category}
                         </p>
-                        <h3 className="font-display text-2xl font-bold text-secondary">
+                        <h3 className="font-display text-2xl font-bold text-white">
                           {car.name}
                         </h3>
                       </div>
                       <div className="text-right">
-                        <p className="text-xl font-bold text-accent">
+                        <p className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
                           {car.price}
                         </p>
                       </div>
@@ -441,13 +437,13 @@ export default function Index() {
                       {car.specs.map((spec, i) => (
                         <span
                           key={i}
-                          className="inline-block px-3 py-1 bg-blue-50 text-primary text-xs font-medium rounded-full"
+                          className="inline-block px-3 py-1 bg-purple-500/20 text-purple-300 text-xs font-medium rounded-full border border-purple-500/30"
                         >
                           {spec}
                         </span>
                       ))}
                     </div>
-                    <button className="mt-6 w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                    <button className="mt-6 w-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white py-3 rounded-lg font-semibold hover:from-purple-500 hover:to-cyan-500 transition shadow-lg shadow-purple-600/50">
                       View Details
                     </button>
                   </div>
@@ -461,7 +457,7 @@ export default function Index() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={prevFeaturedCar}
-                className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-blue-700 transition"
+                className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white flex items-center justify-center hover:from-purple-500 hover:to-cyan-500 transition shadow-lg shadow-purple-600/50"
               >
                 <ChevronLeft className="w-6 h-6" />
               </motion.button>
@@ -473,7 +469,9 @@ export default function Index() {
                     whileHover={{ scale: 1.2 }}
                     onClick={() => setCarouselIndex(index)}
                     className={`h-3 rounded-full transition ${
-                      index === carouselIndex ? "bg-primary w-8" : "bg-muted w-3"
+                      index === carouselIndex
+                        ? "bg-gradient-to-r from-purple-500 to-cyan-500 w-8 shadow-lg shadow-purple-600/50"
+                        : "bg-slate-700 hover:bg-slate-600 w-3"
                     }`}
                   />
                 ))}
@@ -483,7 +481,7 @@ export default function Index() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={nextFeaturedCar}
-                className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-blue-700 transition"
+                className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white flex items-center justify-center hover:from-purple-500 hover:to-cyan-500 transition shadow-lg shadow-purple-600/50"
               >
                 <ChevronRight className="w-6 h-6" />
               </motion.button>
