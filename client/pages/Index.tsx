@@ -281,13 +281,16 @@ export default function Index() {
       </section>
 
       {/* Car Categories */}
-      <section id="categories" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
+      <section id="categories" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-display text-4xl lg:text-5xl font-bold text-secondary mb-4">
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-white mb-4">
               Explore Our Categories
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Discover vehicles tailored to your lifestyle and preferences
             </p>
           </div>
@@ -303,13 +306,13 @@ export default function Index() {
                 className="group cursor-pointer"
               >
                 <div
-                  className={`bg-gradient-to-br ${category.color} rounded-2xl p-8 text-white h-64 flex flex-col justify-between hover:shadow-2xl transition duration-300 transform`}
+                  className={`bg-gradient-to-br ${category.color} rounded-2xl p-8 text-white h-64 flex flex-col justify-between hover:shadow-2xl transition duration-300 transform border border-white/20`}
                 >
                   <div>
                     <h3 className="font-display text-3xl font-bold mb-3">
                       {category.name}
                     </h3>
-                    <p className="text-white/90 text-sm leading-relaxed">
+                    <p className="text-white/80 text-sm leading-relaxed">
                       {category.description}
                     </p>
                   </div>
