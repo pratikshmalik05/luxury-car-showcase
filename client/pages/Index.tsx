@@ -413,7 +413,7 @@ export default function Index() {
                 onClick={() => setSelectedCar(car.name)}
               >
                 <div className="aspect-square overflow-hidden">
-                  <CarGradientCard carName={car.name} />
+                  <CarImageCard carName={car.name} />
                 </div>
                 <div className="p-4 bg-slate-900/80 backdrop-blur-sm">
                   <p className="text-xs font-semibold text-purple-400 mb-1 uppercase">
