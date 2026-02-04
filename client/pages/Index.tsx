@@ -1,21 +1,41 @@
-import { ArrowRight, Zap, Shield, Sparkles, ChevronDown } from "lucide-react";
+import { ArrowRight, Zap, Shield, Sparkles, ChevronDown, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+
+const carImageUrls: Record<string, string> = {
+  "Porsche 911": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+  "Ferrari F8": "https://images.unsplash.com/photo-1579863537050-37265ba4cab0?auto=format&fit=crop&w=800&q=80",
+  "Mustang GT": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
+  "BMW M5": "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?auto=format&fit=crop&w=800&q=80",
+  "Mercedes-AMG": "https://images.unsplash.com/photo-1626400973514-635e0723ca7e?auto=format&fit=crop&w=800&q=80",
+  "Audi R8": "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=800&q=80",
+  "Rolls Royce": "https://images.unsplash.com/photo-1553882900-f2b08422371e?auto=format&fit=crop&w=800&q=80",
+  "Tesla Model S": "https://images.unsplash.com/photo-1560958089-b8a46dd52291?auto=format&fit=crop&w=800&q=80",
+};
 
 export default function Index() {
+  const [selectedCar, setSelectedCar] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
   const cars = [
-    { name: "Porsche 911", brand: "Porsche", category: "Sports", image: "🏎️" },
-    { name: "Ferrari F8", brand: "Ferrari", category: "Sports", image: "🏁" },
-    { name: "Mustang GT", brand: "Ford", category: "Sports", image: "🐴" },
-    { name: "BMW M5", brand: "BMW", category: "Sports", image: "⚡" },
-    { name: "Mercedes-AMG", brand: "Mercedes", category: "Luxury", image: "👑" },
-    { name: "Audi R8", brand: "Audi", category: "Sports", image: "🎯" },
-    { name: "Rolls Royce", brand: "Rolls Royce", category: "Luxury", image: "✨" },
-    { name: "Tesla Model S", brand: "Tesla", category: "Electric", image: "⚙️" },
+    { name: "Porsche 911", brand: "Porsche", category: "Sports", image: carImageUrls["Porsche 911"] },
+    { name: "Ferrari F8", brand: "Ferrari", category: "Sports", image: carImageUrls["Ferrari F8"] },
+    { name: "Mustang GT", brand: "Ford", category: "Sports", image: carImageUrls["Mustang GT"] },
+    { name: "BMW M5", brand: "BMW", category: "Sports", image: carImageUrls["BMW M5"] },
+    { name: "Mercedes-AMG", brand: "Mercedes", category: "Luxury", image: carImageUrls["Mercedes-AMG"] },
+    { name: "Audi R8", brand: "Audi", category: "Sports", image: carImageUrls["Audi R8"] },
+    { name: "Rolls Royce", brand: "Rolls Royce", category: "Luxury", image: carImageUrls["Rolls Royce"] },
+    { name: "Tesla Model S", brand: "Tesla", category: "Electric", image: carImageUrls["Tesla Model S"] },
   ];
+
+  const filteredCars = selectedCategory
+    ? cars.filter(car => car.category === selectedCategory)
+    : cars;
 
   const categories = [
     {
