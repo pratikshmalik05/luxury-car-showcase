@@ -161,39 +161,39 @@ export default function Index() {
       )}
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-border">
+      <nav className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-xl z-50 border-b border-purple-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">
                 🏎️
               </div>
-              <span className="font-display text-xl font-bold text-secondary">
+              <span className="font-display text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
                 LuxeMotor
               </span>
             </div>
             <div className="hidden md:flex items-center gap-8">
               <button
                 onClick={() => scrollToSection("cars")}
-                className="text-sm font-medium hover:text-primary transition"
+                className="text-sm font-medium text-slate-300 hover:text-purple-400 transition"
               >
                 Cars
               </button>
               <button
                 onClick={() => scrollToSection("categories")}
-                className="text-sm font-medium hover:text-primary transition"
+                className="text-sm font-medium text-slate-300 hover:text-purple-400 transition"
               >
                 Categories
               </button>
               <button
                 onClick={() => scrollToSection("features")}
-                className="text-sm font-medium hover:text-primary transition"
+                className="text-sm font-medium text-slate-300 hover:text-purple-400 transition"
               >
                 Why Us
               </button>
               <button
                 onClick={() => scrollToSection("cta")}
-                className="bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+                className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-2 rounded-lg font-medium hover:from-purple-500 hover:to-cyan-500 transition"
               >
                 Get Started
               </button>
