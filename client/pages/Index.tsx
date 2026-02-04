@@ -133,32 +133,28 @@ export default function Index() {
   };
 
   return (
-    <div className="bg-white text-foreground overflow-hidden">
-      {/* Image Modal */}
+    <div className="bg-slate-950 text-foreground overflow-hidden dark">
+      {/* Car Modal */}
       {selectedCar && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
           onClick={() => setSelectedCar(null)}
         >
           <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-4xl"
+            className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden border-2 border-purple-500/50 glow"
           >
-            <img
-              src={selectedCar}
-              alt="Car"
-              className="w-full h-auto rounded-lg"
-            />
+            <CarGradientCard carName={selectedCar} />
             <button
               onClick={() => setSelectedCar(null)}
-              className="absolute top-4 right-4 bg-white rounded-full p-2 hover:bg-gray-200 transition"
+              className="absolute top-4 right-4 bg-slate-800/80 hover:bg-slate-700 rounded-full p-3 transition border border-purple-500/30"
             >
-              <X className="w-6 h-6 text-black" />
+              <X className="w-6 h-6 text-purple-300" />
             </button>
           </motion.div>
         </motion.div>
