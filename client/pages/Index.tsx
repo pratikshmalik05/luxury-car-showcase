@@ -90,31 +90,31 @@ export default function Index() {
   const featuredCars = [
     {
       name: "Porsche 911 Turbo",
+      baseName: "Porsche 911",
       category: "Sports",
       price: "$200,000",
       specs: ["0-60 in 2.7s", "650 HP", "German Engineering"],
-      image: carImageUrls["Porsche 911"],
     },
     {
       name: "Ferrari F8 Tributo",
+      baseName: "Ferrari F8",
       category: "Sports",
       price: "$280,000",
       specs: ["Twin Turbo V12", "710 HP", "Italian Excellence"],
-      image: carImageUrls["Ferrari F8"],
     },
     {
       name: "Rolls Royce Phantom",
+      baseName: "Rolls Royce",
       category: "Luxury",
       price: "$550,000",
       specs: ["12-Cyl Engine", "563 HP", "Ultimate Comfort"],
-      image: carImageUrls["Rolls Royce"],
     },
     {
       name: "Tesla Model Plaid",
+      baseName: "Tesla Model S",
       category: "Electric",
       price: "$139,990",
       specs: ["0-60 in 1.99s", "1000 HP", "Future of Mobility"],
-      image: carImageUrls["Tesla Model S"],
     },
   ];
 
